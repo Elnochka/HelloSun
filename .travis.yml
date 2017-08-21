@@ -1,0 +1,10 @@
+language: java
+sudo: false
+jdk:
+  - oraclejdk8
+services:
+  - postgresql
+script: mvn clean verify
+before_script:
+  - psql -c "create database postsql;" -U postgres
+  - psql -U postgres postsql < postsql.backup
