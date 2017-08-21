@@ -1,0 +1,12 @@
+Для разворачивания приложения на сервере, на ПК должен быть установлен Vagrant и VirtualBox.
+В отдельную папку ложите файлы Vagrantfile, postsql.backup, example-HelloSun.jar.
+При помощи Git Bash, переходите в созданную папку и вызываете vagrant up.
+Устанавливается все необходимое для запуска jar файла.
+Набрав vagrant ssh вы попадаете на виртуальную машину, на ней необходимо изменить пароль пользователя postgres БД:
+
+sudo -u postgres psql postsql
+alter role postgres password '1234';
+\q
+Запустить файл: java -jar /vagrant/example-HelloSun.jar
+
+Работает в браузере, например localhost:8080/contacts?nameFilter=
