@@ -42,11 +42,12 @@ public class ContactsController {
     public List<Contacts> filtrContact(@RequestParam(value="nameFilter", required=false) String nameFilter) {
 
         List<Contacts> list = new CopyOnWriteArrayList<Contacts>();
+        boolean trueValue = true;
 
         Iterable<Contacts> contactN = repository.findAll();
         for (Contacts customer : contactN) {
             String customerName = customer.getName();
-            boolean trueValue = customerName.matches(nameFilter);
+            trueValue = customerName.matches(nameFilter);
 
             if (!trueValue) {
                 list.add(customer);

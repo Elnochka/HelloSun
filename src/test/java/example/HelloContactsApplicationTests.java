@@ -32,5 +32,29 @@ public class HelloContactsApplicationTests {
 		List<Contacts> contact = repository.findByNameNotLike("one");
 		assertEquals(4, contact.size());
 	}
+	@Test
+	public void allList() {
+		List<Contacts> contact = repository.findAll();
+		assertEquals(5, contact.size());
+	}
+
+	@Test
+	public void varList() {
+
+		List<Contacts> contact = repository.findAll();
+		int numberList = 0;
+		boolean trueValue = true;
+		String varStr = "^.*[ai].*$";
+
+		for (Contacts customer : contact) {
+			String customerName = customer.getName();
+			trueValue = customerName.matches(varStr);
+
+			if (!trueValue) {
+				numberList++;
+			}
+		}
+		assertEquals(4, numberList);
+	}
 
 }
